@@ -16,5 +16,13 @@ public class 중복조합 {
 			}
 		}
 	}
-	
+
+
+	public static void main(String[] args){
+
+		int[] temp = new int[5];
+
+		makeOverlabCombination(5, temp,0,0);
+
+	}
 }

@@ -9,9 +9,9 @@ public class 순열 {
 
 			String num = "";
 			for(int i = 0; i < temp.size(); i++) {
-				
+
 				num += temp.get(i);
-				
+
 			}
 			System.out.println(num);
 			System.out.println("=======================");
@@ -28,6 +28,15 @@ public class 순열 {
 				}
 			}
 		}
+	}
+
+	public static void main(String[] args){
+
+		ArrayList<Integer> temp = new ArrayList<>();
+		boolean[] visited = new boolean[3];
+		int[] arr = {1,2,3};
+
+		makePermutation(3, temp, 0, visited, arr);
 	}
 	
 }
