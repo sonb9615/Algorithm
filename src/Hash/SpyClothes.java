@@ -7,32 +7,32 @@ import java.util.Set;
 
 public class SpyClothes {
 
-	 public int solution(String[][] clothes) {
-	        int answer = 0;
-			Map<String, Integer> spy = new HashMap<>();
+	public int solution(String[][] clothes) {
+		int answer = 0;
+		Map<String, Integer> spy = new HashMap<>();
 
-			int num = 1; //ÇØ´ç ÀÇ»ó Á¾·ùÀÇ °¹¼ö + ÇØ´ç Á¾·ù ¾ÈÀÔ´Â °æ¿ì(1)
-			int N = 1; // Á¾·ùÀÇ °¹¼ö
-	        
-			for(int i = 0; i < clothes.length; i++) {
-				spy.put(clothes[i][1], spy.getOrDefault(clothes[i][1], 0) + 1);
-				
+		int num = 1; //í•´ë‹¹ ì˜ìƒ ì¢…ë¥˜ì˜ ê°¯ìˆ˜ + í•´ë‹¹ ì¢…ë¥˜ ì•ˆì…ëŠ” ê²½ìš°(1)
+		int N = 1; // ì¢…ë¥˜ì˜ ê°¯ìˆ˜
+
+		for(int i = 0; i < clothes.length; i++) {
+			spy.put(clothes[i][1], spy.getOrDefault(clothes[i][1], 0) + 1);
+
+		}
+
+		Iterator<String> iterator = spy.keySet().iterator();
+		while(iterator.hasNext()) {
+
+			String Key = (String)iterator.next();
+			num = num * (spy.get(Key)+1);
+			if(spy.size() == N){
+				N = 0;
+				break;
 			}
+		}
 
-			Iterator<String> iterator = spy.keySet().iterator();
-			while(iterator.hasNext()) {
-	           
-				String Key = (String)iterator.next();
-				num = num * (spy.get(Key)+1);
-	            if(spy.size() == N){
-	                N = 0;
-	                break;
-	            }	    
-			}
-			
-			answer = num - 1; // ¸ğµÎ ¾ÈÀÔ´Â °æ¿ì(1)À» »©ÁÖÀÚ
-			return answer;
-	    }
+		answer = num - 1; // ëª¨ë‘ ì•ˆì…ëŠ” ê²½ìš°(1)ì„ ë¹¼ì£¼ì
+		return answer;
+	}
 
-	
+
 }

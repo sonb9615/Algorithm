@@ -11,47 +11,47 @@ import java.util.List;
 
 public class Streaming {
 
-	public int[] solution(String[] genres, int[] plays) {
-        
-		int[] answer = {};
-        
+    public int[] solution(String[] genres, int[] plays) {
+
+        int[] answer = {};
+
         Map<String, Integer> sumgen = new HashMap<>();
         Map<Integer, String> gen = new HashMap<>();
         String[] ordgen = {""};
         int index = 0;
-     
-        for(int i = 0; i < genres.length; i++) {        	
-        	sumgen.put(genres[i], sumgen.getOrDefault(genres[i], 0) + plays[i]);
-        	gen.put(i, genres[i]);
+
+        for(int i = 0; i < genres.length; i++) {
+            sumgen.put(genres[i], sumgen.getOrDefault(genres[i], 0) + plays[i]);
+            gen.put(i, genres[i]);
         }
-        
-        sumgen = sortByValue(sumgen); // ³»¸²Â÷¼øÀ¸·Î Á¤·ÄµÈ Àå¸£map
-        
-        
+
+        sumgen = sortByValue(sumgen); // ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ëœ ì¥ë¥´map
+
+
         Iterator<String> iterator = sumgen.keySet().iterator();
-        
-		while(iterator.hasNext()) { 
-			String key = (String)iterator.next(); 
-			for(int i = 0; i < genres.length; i++) {
-				if(genres[i] == key) {
-					answer[index] = i;
-					
-				}
-			}
-		}
-	
-		
- 
+
+        while(iterator.hasNext()) {
+            String key = (String)iterator.next();
+            for(int i = 0; i < genres.length; i++) {
+                if(genres[i] == key) {
+                    answer[index] = i;
+
+                }
+            }
+        }
+
+
+
         return answer;
     }
-	
-	//mapÀ» value°ªÀ¸·Î ³»¸²Â÷¼ø ½ÃÅ°±â
-	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+
+    //mapì„ valueê°’ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì‹œí‚¤ê¸°
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
         List<Entry<K, V>> list = new ArrayList<>(map.entrySet());
         list.sort(Entry.comparingByValue());
         Collections.reverse(list);
-        
-        
+
+
         Map<K, V> result = new LinkedHashMap<>();
         for (Entry<K, V> entry : list) {
             result.put(entry.getKey(), entry.getValue());

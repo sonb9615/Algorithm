@@ -54,6 +54,5 @@ numbers	return
 //		int[] numbers = {6, 10, 2};
 		int[] numbers = {0,0,0};
 		String result = solution(numbers);
-		
 	}
 }

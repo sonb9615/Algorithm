@@ -16,8 +16,8 @@ public class 중복순열 {
 	}
 
 	public static void main(String[] args){
-		int[] temp = new int[5];
-		int[] arr = {1,2,3,4,5};
-		makeOverlabPermutation(5, temp,0,arr);
+		int[] temp = new int[3];
+		int[] arr = {1,2,3};
+		makeOverlabPermutation(3, temp,0,arr);
 	}
 }
