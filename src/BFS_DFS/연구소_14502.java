@@ -61,10 +61,10 @@ public class 연구소_14502 {
             for(int j = 1; j < m+1; j++){
                 if(A[i][j] == 0 && !visited[i][j]){
                     ++cnt;
-                    ans = Math.max(ans,cnt);
                 }
             }
         }
+        ans = Math.max(ans,cnt);
     }
 
     // 3개의 벽을 모두 세우는 경우
@@ -96,12 +96,12 @@ public class 연구소_14502 {
             }
         }
         dfs(1,0);
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
         input();
         pro();
-        System.out.println(ans);
     }
 
     static class FastReader {
