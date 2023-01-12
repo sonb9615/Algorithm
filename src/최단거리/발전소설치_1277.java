@@ -31,6 +31,7 @@ public class 발전소설치_1277 {
             int y = scan.nextInt();
             edges[i] = new Edge(x,y);
         }
+        connected = new boolean[n+1][n+1];
         for(int i = 0; i < w; i++){
             int from = scan.nextInt();
             int to = scan.nextInt();
@@ -43,11 +44,48 @@ public class 발전소설치_1277 {
 
         for(int i = 1; i < n+1; i++) dist[i] = Double.MAX_VALUE;
         dist[start] = 0;
-        
+        for(int i = 2; i < n+1; i++){
+            if(connected[1][i]) dist[i] = 0;
+        }
+        boolean[] visited = new boolean[n+1];
+        for(int i = 0; i < n; i++){
+            double minDist = Double.MAX_VALUE;
+            int cur = 0;
+            for(int j = 1; j < n+1; j++){
+                if(!visited[j] && minDist >= dist[j]){
+                    minDist = dist[j];
+                    cur = j;
+                }
+            }
+
+            if(cur == n) break;
+            visited[cur] = true;
+            for(int j = 1; j < n+1; j++){
+                if(j == cur) continue;
+                int next = j;
+                if(dist[next] > dist[cur] + getDistance(cur, next)){
+                    dist[next] = dist[cur] + getDistance(cur, next);
+                }
+            }
+        }
+    }
+
+    static double getDistance(int cur, int next){
+        if(connected[cur][next]) return 0;
+        Edge from = edges[cur];
+        Edge to = edges[next];
+        double rtn = Math.pow(from.x - to.x, 2) + Math.pow(from.y - to.y, 2);
+        return Math.sqrt(rtn);
     }
 
     static void pro(){
         dijkstra(1);
+        System.out.println((long)(dist[n] * 1000));
+    }
+
+    public static void main(String[] args) {
+        input();
+        pro();
     }
 
     static class FastReader {
