@@ -59,7 +59,8 @@ public class 택배_1719 {
                 if(dist[e.to] > e.dist + dist[info.idx]){
                     dist[e.to] = e.dist + dist[info.idx];
                     pq.add(new Info(e.to, dist[e.to]));
-                    ans[e.to][info.idx] = e.to;
+                    if(info.idx == start) ans[start][e.to] = e.to;
+                    else ans[start][e.to] = ans[start][info.idx];
                 }
             }
         }
