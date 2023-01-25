@@ -12,35 +12,71 @@ public class 길찾기게임 {
             this.y = _y;
         }
     }
+    static int[][] child;
+    static Edge[] edges;
+    static int[][] answer;
+    static ArrayList<Integer> arr;
 
     public static int[][] solution(int[][] nodeinfo) {
-        int[][] answer = {};
-        int[][] child = new int[nodeinfo.length+1][2];
+        child = new int[nodeinfo.length+1][2];
         int nodeCnt = nodeinfo.length;
-        PriorityQueue<Edge> pq = new PriorityQueue<>(new Comparator<Edge>() {
-            @Override
-            public int compare(Edge n1, Edge n2) {
+        edges = new Edge[nodeinfo.length];
+        answer = new int[2][nodeCnt];
+        arr = new ArrayList<>();
+        for(int i = 1; i < nodeCnt + 1; i++){
+            edges[i-1] = new Edge(i, nodeinfo[i-1][0], nodeinfo[i-1][1]);
+        }
+
+        Arrays.sort(edges, new Comparator<Edge>(){
+            public int compare(Edge n1, Edge n2){
                 if(n1.y == n2.y) return n1.x - n2.x;
                 else return n2.y - n1.y;
             }
         });
 
-        for(int i = 1; i < nodeCnt + 1; i++){
-            pq.add(new Edge(i, nodeinfo[i-1][0], nodeinfo[i-1][1]));
+        Edge root = edges[0];
+        for(int i = 1; i < nodeCnt; i++){
+            makeTree(root, edges[i], nodeinfo);
         }
 
-        Queue<Edge> queue = new LinkedList<>();
-        Edge parE = pq.poll();
-        while(!pq.isEmpty()){
-            Edge e = pq.poll();
-            if(child[parE.idx][1] > 0) parE = queue.poll();
-            if(e.x < parE.x) child[parE.idx][0] = e.idx;
-            else child[parE.idx][1] = e.idx;
-            queue.add(e);
+        preorder(root.idx);
+        for(int i = 0; i < nodeCnt; i++){
+            answer[0][i] = arr.get(i);
         }
-
-
+        arr = new ArrayList<>();
+        postOrder(root.idx);
+        for(int i = 0; i < nodeCnt; i++){
+            answer[1][i] = arr.get(i);
+        }
         return answer;
+    }
+
+    public static void makeTree(Edge parentE, Edge childE, int[][] nodeInfo){
+        if(parentE.x > childE.x){
+            if(child[parentE.idx][0] == 0) child[parentE.idx][0] = childE.idx;
+            else makeTree(new Edge(child[parentE.idx][0]
+                    ,nodeInfo[child[parentE.idx][0]-1][0], nodeInfo[child[parentE.idx][0]-1][1]), childE, nodeInfo);
+        }else{
+            if(child[parentE.idx][1] == 0) child[parentE.idx][1] = childE.idx;
+            else makeTree(new Edge(child[parentE.idx][1]
+                    ,nodeInfo[child[parentE.idx][1]-1][0], nodeInfo[child[parentE.idx][1]-1][1]), childE, nodeInfo);
+        }
+    }
+
+    public static void preorder(int parentIdx){
+        arr.add(parentIdx);
+        for(int i = 0; i < 2; i++){
+            if(child[parentIdx][i] == 0) continue;
+            preorder(child[parentIdx][i]);
+        }
+    }
+
+    public static void postOrder(int parentIdx){
+        for(int i = 0; i < 2; i++){
+            if(child[parentIdx][i] == 0) continue;
+            postOrder(child[parentIdx][i]);
+        }
+        arr.add(parentIdx);
     }
 
     public static void main(String[] args) {
