@@ -79,17 +79,15 @@ public class 등산코스정하기 {
 
         while(!queue.isEmpty()){
             Info info = queue.poll();
-//            if(info.weight != dist[info.idx]) continue;
+            if(dist[info.idx] != info.weight) continue;
             for(Corn corn : adj[info.idx]){
                 int x = Math.max(corn.dist, dist[info.idx]);
                 if(dist[corn.to] > x){
                     dist[corn.to] = x;
+                } else continue;
+                if(!ends[corn.to]){
+                    queue.add(new Info(corn.to, dist[corn.to]));
                 }
-                if(visited[corn.to]) continue;
-                visited[corn.to] = true;
-                if(ends[corn.to]) continue;
-                if(starts[corn.to]) continue;
-                queue.add(new Info(corn.to, dist[corn.to]));
             }
         }
     }
