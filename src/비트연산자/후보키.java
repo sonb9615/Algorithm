@@ -6,7 +6,6 @@ import java.util.HashSet;
 public class 후보키 {
     //후보키
     public static int solution(String[][] relation) {
-        int answer = 0;
         int rowlen = relation.length;
         int colLen = relation[0].length;
         ArrayList<Integer> list = new ArrayList<>();
