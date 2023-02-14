@@ -1,6 +1,8 @@
 package DynamicPrograming;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class _1학년_5557 {
@@ -8,19 +10,33 @@ public class _1학년_5557 {
     static FastReader scan = new FastReader();
     static int N;
     static int[] arr;
-    static int[][] dy;
+    static long[][] dy;
 
     static void input(){
         N = scan.nextInt();
         arr = new int[N];
-        dy = new int[N][2];
+        dy = new long[N][21];
         for(int i = 0; i < N; i++){
             arr[i] = scan.nextInt();
         }
     }
 
     static void pro(){
+        dy[0][arr[0]] = 1;
+        for(int i = 1; i < N-1; i++){
+            for(int j = 0; j < 21; j++){
+                if(dy[i-1][j] >= 1){
+                    if(j + arr[i] <= 20) dy[i][j + arr[i]] += dy[i-1][j];
+                    if(j - arr[i] >= 0) dy[i][j - arr[i]] += dy[i-1][j];
+                }
+            }
+        }
+        System.out.println(dy[N-2][arr[N-1]]);
+    }
 
+    public static void main(String[] args) {
+        input();
+        pro();
     }
 
     static class FastReader {
