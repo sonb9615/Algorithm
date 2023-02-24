@@ -13,6 +13,7 @@ public class 시소짝꿍 {
             if(arr[i] > 2) answer += (arr[i] * (arr[i] - 1)) / 2;
             else if(arr[i] == 2) ++answer;
             int[] trgCmp = {i * 2, i * 3, i * 4};
+
             for(int j = i+1; j < 1001; j++){
                 if(arr[j] == 0) continue;
                 for(int x = 2; x < 5; x++){
