@@ -59,7 +59,8 @@ public class 혼자하는틱택토 {
     }
 
     public static void main(String[] args) {
-        String[] board = {"OOO", "OOX", "XXX"};
+//        String[] board = {"XXX", "XOO", "OOO"};
+        String[] board = {"OOO", "XOO", "XXX"};
         System.out.println(solution(board));
     }
 }
