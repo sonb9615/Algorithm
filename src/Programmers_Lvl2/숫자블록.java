@@ -26,8 +26,8 @@ public class 숫자블록 {
     }
 
     public static void main(String[] args) {
-//        int [] ans = solution(100000014, 100000016);
-        int [] ans = solution(1,10);
+        int [] ans = solution(100000014, 100000016);
+//        int [] ans = solution(1,10);
         for(int x : ans){
             System.out.println(x);
         }
