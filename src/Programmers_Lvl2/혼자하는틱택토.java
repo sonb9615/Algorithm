@@ -13,17 +13,20 @@ public class 혼자하는틱택토 {
                 else ++arr[1];
             }
         }
-
+        // O가 X보다 적은경우 || O > X+1 인경우
         if(arr[0] - arr[1] < 0 || arr[0] - arr[1] > 1) return 0;
         if(arr[0] >= 3){
+            //O로 끝나는 경우
             if(isSame(board,'O')){
-                if(arr[0] - arr[1] == 1) return 1;
+                if(isSame(board,'X')) return 0; // X 3개 연속
+                if(arr[0] - arr[1] == 1) return 1; // O == X+1
                 else return 0;
             }
         }
+        // X로 끝나는 경우
         if(arr[1] >= 3){
             if(isSame(board,'X')){
-                if(arr[0] - arr[1] == 0) return 1;
+                if(arr[0] - arr[1] == 0) return 1; // O == X
                 else return 0;
             }
         }
@@ -54,13 +57,12 @@ public class 혼자하는틱택토 {
         if(board[0].charAt(2) == c && board[1].charAt(1) == c && board[2].charAt(0) == c){
             return true;
         }
-
         return false;
     }
 
     public static void main(String[] args) {
-//        String[] board = {"XXX", "XOO", "OOO"};
-        String[] board = {"OOO", "XOO", "XXX"};
+        String[] board = {"XXX", "XOO", "OOO"};
+//        String[] board = {"OOO", "XOO", "XXX"};
         System.out.println(solution(board));
     }
 }
