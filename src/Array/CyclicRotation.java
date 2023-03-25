@@ -25,6 +25,7 @@ public class CyclicRotation {
             }
         }else{
             answer = A;
+
         }
         return answer;
     }
