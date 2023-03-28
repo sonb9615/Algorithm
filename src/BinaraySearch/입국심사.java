@@ -21,7 +21,6 @@ public class 입국심사 {
                 L = mid + 1;
             }
         }
-        
         return answer;
     }
 }
