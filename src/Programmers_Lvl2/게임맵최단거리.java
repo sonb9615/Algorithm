@@ -33,6 +33,8 @@ public class 게임맵최단거리 {
         }
     }
 
+    //효율성 확인
+
     public static void main(String[] args) {
         int[][] maps = {{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 1}, {0, 0, 0, 0, 1}};
         solution(maps);
