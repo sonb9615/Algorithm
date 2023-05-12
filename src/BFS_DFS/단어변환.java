@@ -1,4 +1,4 @@
-package Simulation;
+package BFS_DFS;
 
 public class 단어변환 {
 
