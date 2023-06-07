@@ -16,4 +16,9 @@ public class 조합 {
 			}
 		}
 	}
+
+	public static void main(String[] args) {
+		int[] temp = new int[2];
+		makeCombination(2, temp, 0,0);
+	}
 }
