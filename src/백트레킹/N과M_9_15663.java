@@ -1,46 +1,62 @@
-package 완전탐색;
+package 백트레킹;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class N과M_3 {
+public class N과M_9_15663 {
 
-    /*https://www.acmicpc.net/problem/15649*/
-
+    static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
-
-    static int N;
-    static int M;
+    static int N, M;
     static int[] selected;
+    static ArrayList<Integer> arr;
 
-    public static void input(){
-        FastReader scan = new FastReader();
+    static Map<String, Integer> map;
+    static boolean[] visited;
+
+    static void input(){
         N = scan.nextInt();
         M = scan.nextInt();
-        selected = new int[M+1];
+
+        selected = new int[M];
+        map = new HashMap<>();
+        arr = new ArrayList<>();
+
+        for(int i = 0; i < N; i++){
+            arr.add(scan.nextInt());
+        }
+        Collections.sort(arr);
+        visited = new boolean[arr.size()];
     }
 
-    public static void ref_func(int k){
+    static void ref_func(int k, int start){
 
-        if(k == M + 1){
-            for(int i = 1; i <= M; i++){
-                sb.append(selected[i]).append(' ');
+        if(k == M){
+            StringBuilder temp = new StringBuilder();
+            for(int i = 0; i < M; i++){
+                temp.append(selected[i]).append(' ');
             }
-            sb.append('\n');
+            if(!map.containsKey(temp.toString())){
+                map.put(temp.toString(), 1);
+                sb.append(temp).append('\n');
+            }
         }else{
-            for(int i = 1; i <= N; i++){
-                selected[k] = i;
-                ref_func(k+1);
-                selected[k] = 0;
+            for(int i = 0; i < arr.size(); i++){
+                if(!visited[i]){
+                    selected[k] = arr.get(i);
+                    visited[i] = true;
+                    ref_func(k+1, start + 1);
+                    visited[i] = false;
+                    selected[k] = 0;
+                }
             }
         }
-
     }
 
     public static void main(String[] args) {
         input();
-        ref_func(1);
-        System.out.print(sb.toString());
+        ref_func(0, 0);
+        System.out.println(sb.toString());
     }
 
     static class FastReader {

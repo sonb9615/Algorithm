@@ -1,13 +1,16 @@
-package 완전탐색;
+package 백트레킹;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class N과M_1 {
+public class N과M_3_15651 {
+
+    /*https://www.acmicpc.net/problem/15649*/
 
     static StringBuilder sb = new StringBuilder();
 
-    static int N,M;
+    static int N;
+    static int M;
     static int[] selected;
 
     public static void input(){
@@ -18,33 +21,26 @@ public class N과M_1 {
     }
 
     public static void ref_func(int k){
+
         if(k == M + 1){
-            for(int i = 1; i <= M ; i++){
+            for(int i = 1; i <= M; i++){
                 sb.append(selected[i]).append(' ');
             }
             sb.append('\n');
         }else{
-            for(int cand = 1; cand <= N; cand++){
-                boolean isUsed = false;
-                for(int j = 1; j <= k; j++){
-                    if(cand == selected[j]){
-                        isUsed = true;
-                        break;
-                    }
-                }
-                if(!isUsed){
-                    selected[k] = cand;
-                    ref_func(k+1);
-                    selected[k] = 0;
-                }
+            for(int i = 1; i <= N; i++){
+                selected[k] = i;
+                ref_func(k+1);
+                selected[k] = 0;
             }
         }
+
     }
 
     public static void main(String[] args) {
         input();
         ref_func(1);
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 
     static class FastReader {
