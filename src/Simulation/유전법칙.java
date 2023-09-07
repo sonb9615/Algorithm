@@ -1,6 +1,5 @@
 package Simulation;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class 유전법칙 {
@@ -39,7 +38,7 @@ public class 유전법칙 {
     }
 
     public static void main(String[] args) {
-        int[][] q = {{3,5}};
+        int[][] q = {{3, 5}};
         solution(q);
     }
 }
