@@ -8,6 +8,7 @@ public class 자물쇠와열쇠 {
         boolean answer = true;
         int[][] board = new int[lock.length + (key.length * 2)][lock.length + (key.length * 2)];
 
+
         return answer;
     }
 
