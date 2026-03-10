@@ -29,4 +29,8 @@ public class N_Queen {
         }
         return true;
     }
+
+    public static void main(String[] args) {
+        System.out.println(solution(8));
+    }
 }
